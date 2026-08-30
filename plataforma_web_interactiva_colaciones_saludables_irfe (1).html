@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colaciones Saludables en Familia — IRFE Santa Cruz</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+            },
+            irfe: {
+              navy: '#1b365d',
+              gold: '#c59b27',
+              red: '#991b1b',
+              light: '#f8fafc'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #print-area, #print-area * {
+        visibility: visible;
+      }
+      #print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-irfe-navy text-white text-xs md:text-sm py-2 px-4 no-print shadow-inner">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="bg-brand-500 text-white font-bold px-2 py-0.5 rounded-full text-xs uppercase tracking-wider">A+S 2026</span>
+        <span class="font-medium">Proyecto: Colaciones Saludables en Familia — 5° Básico C (IRFE Santa Cruz)</span>
+      </div>
+      <div class="flex items-center gap-3 text-slate-300 text-xs">
+        <span><i class="fa-solid fa-graduation-cap text-irfe-gold mr-1"></i> UVM Pedagogía en Biología y Química</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo / Identity -->
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-gradient-to-br from-brand-500 to-brand-700 rounded-2xl flex items-center justify-center text-white text-2xl shadow-md shadow-brand-500/20">
+            <i class="fa-solid fa-apple-whole"></i>
+          </div>
+          <div>
+            <h1 class="font-display font-extrabold text-xl md:text-2xl text-slate-900 tracking-tight leading-none flex items-center gap-2">
+              NutriEduca <span class="text-xs bg-brand-100 text-brand-800 font-bold px-2 py-0.5 rounded-md">5 Min</span>
+            </h1>
+            <p class="text-xs text-slate-500 font-medium">IRFE Santa Cruz • $0$ Sellos de Advertencia</p>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs Desktop -->
+        <nav class="hidden md:flex space-x-1 bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
+          <button onclick="switchTab('pizarra')" id="tab-btn-pizarra" class="tab-button px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 bg-white text-brand-700 shadow-sm">
+            <i class="fa-solid fa-chalkboard-user mr-1.5 text-brand-600"></i> Pizarra & Trivia
+          </button>
+          <button onclick="switchTab('recetas')" id="tab-btn-recetas" class="tab-button px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 text-slate-600 hover:text-slate-900">
+            <i class="fa-solid fa-utensils mr-1.5 text-amber-500"></i> 30 Recetas Rápidas
+          </button>
+          <button onclick="switchTab('planificador')" id="tab-btn-planificador" class="tab-button px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 text-slate-600 hover:text-slate-900">
+            <i class="fa-solid fa-calendar-days mr-1.5 text-blue-500"></i> Planificador Mensual
+          </button>
+          <button onclick="switchTab('proyecto')" id="tab-btn-proyecto" class="tab-button px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 text-slate-600 hover:text-slate-900">
+            <i class="fa-solid fa-circle-info mr-1.5 text-purple-500"></i> Sobre el Proyecto
+          </button>
+        </nav>
+
+        <!-- Action Badge -->
+        <div class="hidden lg:flex items-center gap-2">
+          <a href="#planificador-section" onclick="switchTab('planificador')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs uppercase px-4 py-2.5 rounded-xl shadow-md shadow-brand-600/20 transition flex items-center gap-2">
+            <i class="fa-solid fa-plus"></i> Organizar Menú
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div class="md:hidden border-t border-slate-200 bg-slate-50 px-2 py-2 flex justify-around">
+      <button onclick="switchTab('pizarra')" class="mobile-tab-btn flex-1 py-2 text-center text-xs font-bold text-brand-700">
+        <i class="fa-solid fa-chalkboard-user block text-base mb-0.5"></i> Pizarra
+      </button>
+      <button onclick="switchTab('recetas')" class="mobile-tab-btn flex-1 py-2 text-center text-xs font-semibold text-slate-600">
+        <i class="fa-solid fa-utensils block text-base mb-0.5 text-amber-500"></i> Recetas
+      </button>
+      <button onclick="switchTab('planificador')" class="mobile-tab-btn flex-1 py-2 text-center text-xs font-semibold text-slate-600">
+        <i class="fa-solid fa-calendar-days block text-base mb-0.5 text-blue-500"></i> Planificador
+      </button>
+      <button onclick="switchTab('proyecto')" class="mobile-tab-btn flex-1 py-2 text-center text-xs font-semibold text-slate-600">
+        <i class="fa-solid fa-circle-info block text-base mb-0.5 text-purple-500"></i> Info
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- TAB 1: PIZARRA EDUCATIVA & TRIVIA INTERACTIVA (Replica y amplía Canva 1) -->
+    <section id="view-pizarra" class="tab-view space-y-10">
+      
+      <!-- Hero Banner -->
+      <div class="relative overflow-hidden bg-gradient-to-r from-irfe-navy via-slate-900 to-brand-900 rounded-3xl p-8 md:p-12 text-white shadow-xl">
+        <div class="relative z-10 max-w-2xl space-y-4">
+          <span class="inline-flex items-center gap-1.5 bg-brand-500/20 text-brand-300 border border-brand-500/30 px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase">
+            <i class="fa-solid fa-shield-halved"></i> Educación Nutricional Situada
+          </span>
+          <h2 class="font-display font-extrabold text-3xl md:text-5xl tracking-tight leading-tight">
+            Aprende a Comer Rico, Fácil y <span class="text-brand-400">Sin Sellos</span>
+          </h2>
+          <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+            Una plataforma diseñada para las familias de 5° Básico del IRFE. Descubre por qué tu cuerpo necesita nutrientes reales del Valle de Colchagua para aprender, jugar y crecer con energía sin complicaciones en la cocina.
+          </p>
+          <div class="flex flex-wrap gap-3 pt-2">
+            <button onclick="switchTab('recetas')" class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-6 py-3 rounded-xl transition shadow-lg shadow-brand-500/30 text-sm flex items-center gap-2">
+              <i class="fa-solid fa-book-open"></i> Ver 30 Recetas
+            </button>
+            <a href="#trivia-box" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-6 py-3 rounded-xl transition text-sm flex items-center gap-2">
+              <i class="fa-solid fa-gamepad"></i> Jugar la Trivia
+            </a>
+          </div>
+        </div>
+        <!-- Decorative Glow -->
+        <div class="absolute -right-12 -bottom-12 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+      </div>
+
+      <!-- 3 Pillars Grid (Consejos, Datos Bioquímicos, Ley de Sellos) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Tarjeta 1: Consejos Prácticos -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl mb-4 font-bold">
+            <i class="fa-solid fa-lightbulb"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Consejos para el Hogar</h3>
+          <ul class="space-y-3 text-xs md:text-sm text-slate-600">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-brand-600 mt-1"></i>
+              <span><strong>Regla de los 5 Minutos:</strong> Cocer huevos o cortar zanahorias la noche anterior reduce el tiempo matutino a cero.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-brand-600 mt-1"></i>
+              <span><strong>La Fruta Entera:</strong> Prefiere manzana o uva con cáscara en vez de jugos procesados para no perder la fibra saciante.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-brand-600 mt-1"></i>
+              <span><strong>Agua Pura Siempre:</strong> Rellena la botella con agua de la llave en vez de néctares altos en azúcar oculta.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tarjeta 2: Datos de Biología & Química -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center text-xl mb-4 font-bold">
+            <i class="fa-solid fa-dna"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Ciencia Nutricional Simple</h3>
+          <ul class="space-y-3 text-xs md:text-sm text-slate-600">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-atom text-blue-600 mt-1"></i>
+              <span><strong>Carbohidratos Complejos:</strong> La avena y el maíz liberan glucosa lentamente, evitando el cansancio a las 11:00 AM.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-atom text-blue-600 mt-1"></i>
+              <span><strong>Proteínas de Alta Biodisponibilidad:</strong> El huevo y el quesillo reparan tejidos musculares y mejoran la memoria.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-atom text-blue-600 mt-1"></i>
+              <span><strong>Ácidos Grasos Omega:</strong> Las nueces de Santa Cruz protegen las membranas de las neuronas del cerebro.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tarjeta 3: Ley 20.606 y Sellos -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl mb-4 font-bold">
+            <i class="fa-solid fa-octagon-exclamation"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Entendiendo los 4 Sellos</h3>
+          <div class="space-y-2 text-xs md:text-sm text-slate-600">
+            <div class="p-2 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between">
+              <span class="font-semibold text-slate-800">ALTO EN AZÚCARES</span>
+              <span class="text-[10px] bg-red-100 text-red-700 font-bold px-2 py-0.5 rounded">Riesgo diabetes</span>
+            </div>
+            <div class="p-2 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between">
+              <span class="font-semibold text-slate-800">ALTO EN SODIO</span>
+              <span class="text-[10px] bg-red-100 text-red-700 font-bold px-2 py-0.5 rounded">Presión arterial</span>
+            </div>
+            <div class="p-2 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between">
+              <span class="font-semibold text-slate-800">ALTO EN GRASAS SAT.</span>
+              <span class="text-[10px] bg-red-100 text-red-700 font-bold px-2 py-0.5 rounded">Salud cardíaca</span>
+            </div>
+            <div class="p-2 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between">
+              <span class="font-semibold text-slate-800">ALTO EN CALORÍAS</span>
+              <span class="text-[10px] bg-red-100 text-red-700 font-bold px-2 py-0.5 rounded">Sobrepeso/obesidad</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TRIVIA INTERACTIVA PARA EL AULA Y FAMILIAS -->
+      <div id="trivia-box" class="bg-gradient-to-br from-white to-brand-50 border-2 border-brand-200 rounded-3xl p-6 md:p-10 shadow-lg">
+        <div class="max-w-3xl mx-auto space-y-6">
+          <div class="text-center space-y-2">
+            <span class="bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Desafío 5° Básico</span>
+            <h3 class="font-display font-extrabold text-2xl md:text-3xl text-slate-900">¿Detective de Colaciones Saludables?</h3>
+            <p class="text-xs md:text-sm text-slate-600">Pon a prueba tus conocimientos y ayuda a tu familia a elegir la colación perfecta.</p>
+          </div>
+
+          <div id="quiz-container" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-5">
+            <!-- Question Box Dynamic -->
+            <div class="flex justify-between items-center text-xs text-slate-500 border-b border-slate-100 pb-3">
+              <span id="quiz-progress" class="font-bold text-brand-700">Pregunta 1 de 4</span>
+              <span id="quiz-score" class="font-bold">Puntos: 0</span>
+            </div>
+            <h4 id="quiz-question" class="text-base md:text-lg font-bold text-slate-900">
+              ¿Cuál de estas opciones entrega energía prolongada para la clase de ciencias sin sumar sellos negros?
+            </h4>
+            <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <!-- Rendered with JS -->
+            </div>
+            <div id="quiz-feedback" class="hidden p-4 rounded-xl text-xs md:text-sm font-medium"></div>
+            <div class="flex justify-end">
+              <button id="quiz-next-btn" onclick="nextQuestion()" class="hidden bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs uppercase px-6 py-2.5 rounded-xl transition">
+                Siguiente Pregunta <i class="fa-solid fa-arrow-right ml-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB 2: CATÁLOGO DE 30 RECETAS DE 5 MINUTOS (Replica y amplía Canva 2) -->
+    <section id="view-recetas" class="tab-view hidden space-y-8">
+      
+      <!-- Section Header & Filter Controls -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 pb-6">
+        <div>
+          <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Catálogo Territorial Santa Cruz</span>
+          <h2 class="font-display font-black text-2xl md:text-4xl text-slate-900">30 Colaciones Rápidas ($< 5\text{ min}$)</h2>
+          <p class="text-xs md:text-sm text-slate-500 mt-1">Económicas, con ingredientes accesibles en ferias locales y sin sellos de advertencia.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="filterRecipes('all')" class="filter-btn active bg-slate-900 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition">
+            Todas (30)
+          </button>
+          <button onclick="filterRecipes('frutas')" class="filter-btn bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition">
+            🍎 Frutales
+          </button>
+          <button onclick="filterRecipes('proteinas')" class="filter-btn bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition">
+            🥚 Proteicas
+          </button>
+          <button onclick="filterRecipes('economicas')" class="filter-btn bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition">
+            💰 < $400 CLP
+          </button>
+          <button onclick="filterRecipes('valle')" class="filter-btn bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition">
+            🍇 Valle Colchagua
+          </button>
+        </div>
+      </div>
+
+      <!-- Recipes Grid Container -->
+      <div id="recipes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered via JS -->
+      </div>
+
+    </section>
+
+    <!-- TAB 3: PLANIFICADOR MENSUAL INTERACTIVO (Replica y amplía Base44 App) -->
+    <section id="view-planificador" class="tab-view hidden space-y-8">
+      
+      <!-- Header Banner with Controls -->
+      <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 no-print">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-0.5 rounded-md uppercase">Gestión del Hogar</span>
+            <span class="text-xs text-slate-400">• 5° Básico C</span>
+          </div>
+          <h2 class="font-display font-extrabold text-2xl md:text-3xl text-slate-900">Planificador Mensual de Recreos</h2>
+          <p class="text-xs md:text-sm text-slate-500">Haz clic en cualquier día para asignar una colación saludable o cambiarla. Organiza la semana y ahorra tiempo familiar.</p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap gap-2 w-full sm:w-auto">
+          <button onclick="autoFillBalancedMonth()" class="flex-1 sm:flex-initial bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Planificar Balanceado
+          </button>
+          <button onclick="window.print()" class="flex-1 sm:flex-initial bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center justify-center gap-2 border border-slate-200">
+            <i class="fa-solid fa-print"></i> Imprimir / Guardar PDF
+          </button>
+          <button onclick="clearMonth()" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold text-xs px-3 py-2.5 rounded-xl transition border border-red-200">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Summary KPI Indicators -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 no-print">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm text-center">
+          <div class="text-xs text-slate-400 font-semibold uppercase">Días Planificados</div>
+          <div id="kpi-planned-days" class="text-2xl font-black text-brand-600 mt-1">20 / 20</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm text-center">
+          <div class="text-xs text-slate-400 font-semibold uppercase">Costo Promedio Día</div>
+          <div id="kpi-avg-cost" class="text-2xl font-black text-slate-800 mt-1">$380 CLP</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm text-center">
+          <div class="text-xs text-slate-400 font-semibold uppercase">Sellos de Advertencia</div>
+          <div class="text-2xl font-black text-emerald-600 mt-1">0 Sellos</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm text-center">
+          <div class="text-xs text-slate-400 font-semibold uppercase">Tiempo Preparación</div>
+          <div class="text-2xl font-black text-blue-600 mt-1">< 4 min</div>
+        </div>
+      </div>
+
+      <!-- Printable Area Container -->
+      <div id="print-area" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 md:p-8">
+        
+        <div class="hidden print:block mb-6 border-b border-slate-300 pb-4">
+          <div class="flex justify-between items-center">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">Menú Mensual de Colaciones Saludables — 5° Básico IRFE</h2>
+              <p class="text-xs text-slate-600">Estudiante: _______________________ | Mes: Septiembre 2026 | Santa Cruz</p>
+            </div>
+            <div class="text-right text-xs text-slate-500">
+              <p class="font-bold">Proyecto A+S UVM</p>
+              <p>Biología & Química</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Month Navigation Header -->
+        <div class="flex justify-between items-center mb-6 no-print">
+          <h3 class="font-display font-extrabold text-xl text-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-calendar-check text-brand-600"></i> Calendario Escolar Mensual (Lunes a Viernes)
+          </h3>
+          <span class="text-xs bg-slate-100 text-slate-600 font-semibold px-3 py-1 rounded-lg">4 Semanas Escolares</span>
+        </div>
+
+        <!-- Days of Week Header -->
+        <div class="grid grid-cols-5 gap-2 md:gap-4 mb-2 text-center text-xs font-extrabold uppercase text-slate-400 tracking-wider">
+          <div class="py-2 bg-slate-50 rounded-xl">Lunes</div>
+          <div class="py-2 bg-slate-50 rounded-xl">Martes</div>
+          <div class="py-2 bg-slate-50 rounded-xl">Miércoles</div>
+          <div class="py-2 bg-slate-50 rounded-xl">Jueves</div>
+          <div class="py-2 bg-slate-50 rounded-xl">Viernes</div>
+        </div>
+
+        <!-- Calendar Grid (20 school days: 4 weeks x 5 days) -->
+        <div id="calendar-grid" class="grid grid-cols-5 gap-2 md:gap-4">
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TAB 4: SOBRE EL PROYECTO & MARCO A+S -->
+    <section id="view-proyecto" class="tab-view hidden space-y-8">
+      
+      <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm space-y-6">
+        <div class="border-b border-slate-100 pb-4">
+          <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Formación Pedagógica UVM</span>
+          <h2 class="font-display font-extrabold text-3xl text-slate-900 mt-1">Proyecto de Aprendizaje + Servicio (A+S)</h2>
+          <p class="text-sm text-slate-500">Práctica de Servicio a la Comunidad • Instituto Regional Federico Errázuriz (IRFE)</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="space-y-4 text-xs md:text-sm text-slate-600 leading-relaxed">
+            <h3 class="font-bold text-base text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-users-viewfinder text-brand-600"></i> Equipo Pedagógico Responsable
+            </h3>
+            <p>
+              Esta plataforma web y los recursos interactivos fueron diseñados por los estudiantes del <strong>Programa de Formación Pedagógica en Biología y Química</strong> de la Universidad Viña del Mar:
+            </p>
+            <ul class="space-y-2 font-medium text-slate-800">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-user-check text-brand-600"></i> Pablo Pérez</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-user-check text-brand-600"></i> Cristián Chandía</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-user-check text-brand-600"></i> Karol Alfaro</li>
+            </ul>
+            <p class="pt-2">
+              <strong>Comunidad Socia:</strong> 5° Año Básico C, directiva de apoderados y equipo docente del IRFE en Santa Cruz.
+            </p>
+          </div>
+
+          <div class="space-y-4 text-xs md:text-sm text-slate-600 leading-relaxed bg-slate-50 p-6 rounded-2xl border border-slate-200">
+            <h3 class="font-bold text-base text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-scale-balanced text-brand-600"></i> Cadena de Coherencia Causal
+            </h3>
+            <p>
+              El diagnóstico de terreno levantó como causa central la falta de tiempo de preparación en el hogar (donde el 75% de las cuidadoras activas son madres) y la oferta predominante de ultraprocesados en el quiosco escolar.
+            </p>
+            <p>
+              Como respuesta, esta plataforma ofrece <strong>autonomía infantil, recetas de $< 5\text{ min}$ de bajísimo costo y planificación mensual</strong> para aliviar la carga familiar sin culpabilizar.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- MODAL: DETALLE DE RECETA / ASIGNAR AL CALENDARIO -->
+  <div id="recipe-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl relative space-y-5 animate-scale-up">
+      <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="space-y-1">
+        <span id="modal-tag" class="text-xs bg-brand-100 text-brand-800 font-bold px-2.5 py-0.5 rounded-md uppercase"></span>
+        <h3 id="modal-title" class="font-display font-extrabold text-2xl text-slate-900"></h3>
+        <p id="modal-desc" class="text-xs md:text-sm text-slate-500"></p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-2 bg-slate-50 p-3 rounded-2xl border border-slate-100 text-center text-xs">
+        <div>
+          <span class="text-slate-400 block text-[10px] uppercase">Tiempo</span>
+          <span id="modal-time" class="font-bold text-slate-800"></span>
+        </div>
+        <div>
+          <span class="text-slate-400 block text-[10px] uppercase">Costo Porción</span>
+          <span id="modal-cost" class="font-bold text-emerald-600"></span>
+        </div>
+        <div>
+          <span class="text-slate-400 block text-[10px] uppercase">Sellos</span>
+          <span class="font-bold text-brand-600">0 Sellos</span>
+        </div>
+      </div>
+
+      <div class="space-y-2 text-xs md:text-sm">
+        <h4 class="font-bold text-slate-900 uppercase text-xs tracking-wider">Ingredientes Sencillos:</h4>
+        <ul id="modal-ingredients" class="space-y-1.5 text-slate-600 list-disc list-inside"></ul>
+      </div>
+
+      <div class="space-y-2 text-xs md:text-sm">
+        <h4 class="font-bold text-slate-900 uppercase text-xs tracking-wider">Aporte Biológico & Tip de Santa Cruz:</h4>
+        <p id="modal-bio" class="text-slate-600 bg-brand-50/60 p-3 rounded-xl border border-brand-100"></p>
+      </div>
+
+      <!-- Assign to day selector -->
+      <div class="border-t border-slate-100 pt-4 flex items-center justify-between gap-3">
+        <select id="modal-day-select" class="bg-slate-100 text-slate-700 text-xs font-semibold rounded-xl px-3 py-2.5 border-none focus:ring-2 focus:ring-brand-500">
+          <!-- Populated with 20 days -->
+        </select>
+        <button onclick="assignFromModal()" class="flex-1 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs uppercase px-4 py-2.5 rounded-xl transition shadow-md shadow-brand-600/20">
+          <i class="fa-solid fa-calendar-plus mr-1"></i> Asignar al Día
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-400 no-print mt-auto">
+    <div class="max-w-7xl mx-auto px-4 space-y-1">
+      <p class="font-semibold text-slate-600">Universidad Viña del Mar • Escuela de Educación • Licenciatura en Educación</p>
+      <p>Práctica de Servicio a la Comunidad — Instituto Regional Federico Errázuriz (IRFE), Santa Cruz 2026.</p>
+    </div>
+  </footer>
+
+  <!-- Application Logic JS -->
+  <script>
+    // 1. DATA: 30 RECETAS SALUDABLES (< 5 MINUTOS)
+    const RECIPES = [
+      {
+        id: 1,
+        title: "Brocheta Frutal del Valle",
+        category: "frutas",
+        cost: 350,
+        time: "3 min",
+        tag: "Valle de Colchagua",
+        desc: "Uvas frescas de Santa Cruz, gajos de naranja y trozos de manzana en varilla de madera.",
+        ingredients: ["1 taza de uvas locales lavadas", "1/2 manzana picada en cubos", "1/2 naranja en gajos", "2 varillas de brocheta"],
+        bio: "Fructosa natural de rápida asimilación para el cerebro y fibra vegetal saciante. Las uvas y manzanas son de alta disponibilidad local."
+      },
+      {
+        id: 2,
+        title: "Rollito de Pan Pita con Quesillo",
+        category: "proteinas",
+        cost: 450,
+        time: "3 min",
+        tag: "Proteica",
+        desc: "Pan pita integral enrollado con quesillo fresco y rodajas finas de tomate.",
+        ingredients: ["1 pan pita integral delgado", "1 rebanada gruesa de quesillo", "2 rodajas de tomate", "1 pizca de orégano"],
+        bio: "Proteína láctea de absorción intermedia (caseína) y carbohidratos complejos que evitan alzas bruscas de glucosa."
+      },
+      {
+        id: 3,
+        title: "Yogur Crunch con Avena y Nueces",
+        category: "valle",
+        cost: 500,
+        time: "2 min",
+        tag: "Valle de Colchagua",
+        desc: "Yogur natural sin azúcar mezclado con 2 cucharadas de avena y nueces partidas.",
+        ingredients: ["1 pote de yogur natural 0% azúcar", "2 cdas de avena laminada", "3 nueces de Paniahue picadas"],
+        bio: "Probióticos para la microbiota intestinal y ácidos grasos Omega-3 provenientes de los nogales de la zona."
+      },
+      {
+        id: 4,
+        title: "Huevo Duro con Bastones de Zanahoria",
+        category: "proteinas",
+        cost: 380,
+        time: "4 min",
+        tag: "Proteica",
+        desc: "Un huevo cocido de campo pelado acompañado de tiritas crujientes de zanahoria fresca.",
+        ingredients: ["1 huevo cocido duro", "1/2 zanahoria pelada en bastones", "Pizca mínima de sal"],
+        bio: "Proteína completa (albúmina) y colina, neurotransmisor fundamental para la memoria y concentración escolar."
+      },
+      {
+        id: 5,
+        title: "Palomitas de Maíz Caseras (Popcorn 0 Sellos)",
+        category: "economicas",
+        cost: 180,
+        time: "4 min",
+        tag: "Económica",
+        desc: "Maíz curagua inflado a la olla con 1/2 cucharadita de aceite y mínima sal.",
+        ingredients: ["1/4 taza de maíz curagua", "1/2 cdta de aceite vegetal", "Pizca muy ligera de sal"],
+        bio: "Fibra integral saciante y polifenoles antioxidantes. Reemplaza a las papas fritas comerciales por un 10% del costo."
+      },
+      {
+        id: 6,
+        title: "Manzana con Mantequilla de Maní",
+        category: "frutas",
+        cost: 400,
+        time: "2 min",
+        tag: "Energética",
+        desc: "Gajos de manzana crujiente untados con 1 cucharadita de pasta de maní 100% natural.",
+        ingredients: ["1 manzana verde o roja", "1 cda de mantequilla de maní sin azúcar"],
+        bio: "Grasas monoinsaturadas cardiosaludables y fibra dietética que prolonga la sensación de saciedad."
+      },
+      {
+        id: 7,
+        title: "Sandwichito de Huevo y Lechuga",
+        category: "proteinas",
+        cost: 450,
+        time: "4 min",
+        tag: "Proteica",
+        desc: "Medio pan marraqueta sin miga con huevo molido al tenedor y hojas de lechuga.",
+        ingredients: ["1/2 marraqueta", "1 huevo duro molido", "1 hoja de lechuga fresca"],
+        bio: "Aporte de hierro, vitamina A y carbohidratos de bajo índice glucémico con ingredientes tradicionales chilenos."
+      },
+      {
+        id: 8,
+        title: "Mix de Frutos Secos y Pasas",
+        category: "valle",
+        cost: 450,
+        time: "1 min",
+        tag: "Valle de Colchagua",
+        desc: "Un puñado medido de nueces, almendras y pasas rubias o morenas locales.",
+        ingredients: ["4 nueces", "6 almendras", "1 cda de pasas dulces"],
+        bio: "Minerales esenciales (magnesio y fósforo) claves en la conducción del impulso nervioso durante las pruebas."
+      },
+      {
+        id: 9,
+        title: "Bastones de Pepino y Apio con Limón",
+        category: "economicas",
+        cost: 250,
+        time: "3 min",
+        tag: "Económica",
+        desc: "Bastones frescos y crujientes aliñados con unas gotas de limón de pica natural.",
+        ingredients: ["1/2 pepino con cáscara", "1 varita de apio", "Gotitas de limón"],
+        bio: "95% agua biológica y electrolitos naturales para una hidratación profunda en días calurosos."
+      },
+      {
+        id: 10,
+        title: "Plátano con Avena y Canela",
+        category: "frutas",
+        cost: 300,
+        time: "2 min",
+        tag: "Rápida",
+        desc: "Rodajas de plátano maduro espolvoreadas con avena instantánea y un toque de canela.",
+        ingredients: ["1 plátano mediano", "1 cda de avena", "Pizca de canela en polvo"],
+        bio: "Potasio para la contracción muscular en educación física y triptófano, precursor de la serotonina."
+      },
+      {
+        id: 11,
+        title: "Mini Panqueque de Avena y Huevo",
+        category: "proteinas",
+        cost: 380,
+        time: "4 min",
+        tag: "Caliente",
+        desc: "1 huevo batido con 2 cucharadas de avena, cocinado 1 min por lado en sartén antiadherente.",
+        ingredients: ["1 huevo", "2 cdas de avena", "1 toque de vainilla"],
+        bio: "Sin harinas refinadas ni azúcares añadidos; textura suave muy aceptada por niños de 10 años."
+      },
+      {
+        id: 12,
+        title: "Fajita de Atún y Ciboulette",
+        category: "proteinas",
+        cost: 550,
+        time: "3 min",
+        tag: "Proteica",
+        desc: "Fajita integral con 2 cucharadas de atún al agua desmenuzado y ciboulette picado.",
+        ingredients: ["1 tortilla de maíz o integral", "2 cdas de atún al agua", "Ciboulette picado"],
+        bio: "Proteína de pescado rica en ácidos grasos EPA/DHA protectores del sistema cardiovascular."
+      },
+      {
+        id: 13,
+        title: "Yogur con Frutillas Frescas",
+        category: "frutas",
+        cost: 480,
+        time: "2 min",
+        tag: "Antioxidante",
+        desc: "Pote de yogur descremado con frutillas picadas de huertos cercanos.",
+        ingredients: ["1 yogur natural", "3 frutillas maduras picadas"],
+        bio: "Vitamina C que potencia el sistema inmunológico frente a resfríos estacionales."
+      },
+      {
+        id: 14,
+        title: "Garbanzos Tostados al Horno/Sartén",
+        category: "economicas",
+        cost: 200,
+        time: "4 min",
+        tag: "Crunch",
+        desc: "Garbanzos cocidos salteados 4 minutos con páprika y orégano hasta quedar crocantes.",
+        ingredients: ["1/2 taza de garbanzos cocidos", "Pizca de páprika y orégano", "Gotitas de aceite"],
+        bio: "Legumbre convertida en snack crocante; altísimo contenido en hierro y zinc vegetal."
+      },
+      {
+        id: 15,
+        title: "Naranja en Gajos con Semillas de Chía",
+        category: "frutas",
+        cost: 280,
+        time: "2 min",
+        tag: "Económica",
+        desc: "Naranja jugosa pelada en gajos y espolvoreada con semillas de chía hidratadas.",
+        ingredients: ["1 naranja grande", "1/2 cdta de semillas de chía"],
+        bio: "La fibra soluble de la chía regula el tránsito digestivo infantil."
+      },
+      {
+        id: 16,
+        title: "Sándwich de Palta y Semillas",
+        category: "valle",
+        cost: 520,
+        time: "3 min",
+        tag: "Valle de Colchagua",
+        desc: "Medio pan batido con palta molida fresca y semillas de maravilla peladas.",
+        ingredients: ["1/2 pan batido", "2 cdas de palta Hass", "1 cdta de semillas de maravilla"],
+        bio: "Vitamina E y grasas buenas esenciales en el crecimiento celular de 5° básico."
+      },
+      {
+        id: 17,
+        title: "Bocaditos de Tomate Cherry y Quesillo",
+        category: "proteinas",
+        cost: 420,
+        time: "2 min",
+        tag: "Fresco",
+        desc: "Tomatitos cherry partidos por la mitad intercalados con cubitos de quesillo.",
+        ingredients: ["5 tomates cherry", "5 cubitos de quesillo", "Orégano"],
+        bio: "Licopeno antioxidante y calcio biodisponible para la mineralización ósea."
+      },
+      {
+        id: 18,
+        title: "Galleta de Arroz con Pasta de Huevo",
+        category: "economicas",
+        cost: 320,
+        time: "3 min",
+        tag: "Ligera",
+        desc: "2 galletas de arroz inflado untadas con huevo duro pisado.",
+        ingredients: ["2 galletas de arroz sin sal", "1 huevo duro molido"],
+        bio: "Snack ligero, libre de gluten y con proteína pura sin grasas saturadas."
+      },
+      {
+        id: 19,
+        title: "Compota Casera de Manzana Express",
+        category: "frutas",
+        cost: 250,
+        time: "4 min",
+        tag: "Casera",
+        desc: "Manzana rallada al instante con jugo de naranja y una pizca de canela.",
+        ingredients: ["1 manzana rallada", "2 cdas de jugo de naranja natural", "Canela"],
+        bio: "Pectina natural que protege la mucosa gástrica en las mañanas escolares."
+      },
+      {
+        id: 20,
+        title: "Rollitos de Jamón de Pavo y Quesillo",
+        category: "proteinas",
+        cost: 490,
+        time: "2 min",
+        tag: "Sin Harinas",
+        desc: "2 láminas de jamón de pechuga de pavo bajo en sodio enrolladas con tiritas de quesillo.",
+        ingredients: ["2 láminas de jamón de pavo", "2 bastones de quesillo"],
+        bio: "Colación 100% proteica, ideal para días de educación física intensa."
+      },
+      {
+        id: 21,
+        title: "Kiwi en Rodajas con Chía",
+        category: "frutas",
+        cost: 350,
+        time: "2 min",
+        tag: "Vitamínica",
+        desc: "Kiwi chileno pelado y cortado en monedas fáciles de tomar con la mano.",
+        ingredients: ["1 kiwi maduro", "1 pizca de chía"],
+        bio: "Doble contenido de vitamina C que una naranja tradicional."
+      },
+      {
+        id: 22,
+        title: "Bolitas Energéticas de Avena y Plátano",
+        category: "valle",
+        cost: 300,
+        time: "4 min",
+        tag: "Lúdica",
+        desc: "Medio plátano molido amasado con 3 cdas de avena y formado en 3 bolitas.",
+        ingredients: ["1/2 plátano", "3 cdas de avena", "1 pizca de cacao amargo"],
+        bio: "Los niños pueden amasarla en casa fomentando su propia autonomía alimentaria."
+      },
+      {
+        id: 23,
+        title: "Leche Descremada Blanca con Almendras",
+        category: "proteinas",
+        cost: 450,
+        time: "1 min",
+        tag: "Express",
+        desc: "Una cajita de leche descremada sin sabor ni sellos junto a 6 almendras.",
+        ingredients: ["200 ml de leche blanca descremada", "6 almendras"],
+        bio: "Calcio, vitamina D y proteínas lácteas sin adición de azúcares saborizados."
+      },
+      {
+        id: 24,
+        title: "Bastones de Zapallito Italiano Salteados",
+        category: "economicas",
+        cost: 220,
+        time: "4 min",
+        tag: "Verduras",
+        desc: "Tiritas de zapallito italiano salteadas rápidamente a fuego fuerte.",
+        ingredients: ["1/2 zapallito italiano", "Gotitas de aceite y orégano"],
+        bio: "Excelente vehículo para acostumbrar el paladar infantil al sabor natural de los vegetales."
+      },
+      {
+        id: 25,
+        title: "Ensalada de Frutas Multicolor",
+        category: "frutas",
+        cost: 400,
+        time: "4 min",
+        tag: "Variada",
+        desc: "Mezcla de cubitos de manzana, pera de agua y uvas de Colchagua.",
+        ingredients: ["1/3 manzana", "1/3 pera", "5 uvas"],
+        bio: "Variedad de flavonoides antioxidantes por la diversidad de colores frutales."
+      },
+      {
+        id: 26,
+        title: "Tostada Integral con Ricotta y Orégano",
+        category: "proteinas",
+        cost: 390,
+        time: "3 min",
+        tag: "Gourmet",
+        desc: "1 rebanada de pan integral tostado con 1 cucharada de ricotta fresca.",
+        ingredients: ["1 pan de molde integral", "1 cda de ricotta", "Orégano"],
+        bio: "Bajo contenido en grasas saturadas con alto valor biológico proteico."
+      },
+      {
+        id: 27,
+        title: "Pera con Nueces Picadas",
+        category: "valle",
+        cost: 380,
+        time: "2 min",
+        tag: "Valle de Colchagua",
+        desc: "Pera jugosa en rodajas finas con 2 nueces partidas encima.",
+        ingredients: ["1 pera de agua", "2 nueces"],
+        bio: "Equilibrio perfecto entre agua, fibra y lípidos de alta calidad neuroprotectora."
+      },
+      {
+        id: 28,
+        title: "Huevitos de Codorniz Cocidos",
+        category: "proteinas",
+        cost: 450,
+        time: "3 min",
+        tag: "Mini Snacks",
+        desc: "4 huevitos de codorniz duros fáciles de comer de un bocado.",
+        ingredients: ["4 huevos de codorniz", "Pizca de sal"],
+        bio: "Formato lúdico de altísima concentración en hierro y fósforo."
+      },
+      {
+        id: 29,
+        title: "Melón Calameño en Cubos",
+        category: "frutas",
+        cost: 300,
+        time: "3 min",
+        tag: "Estacional",
+        desc: "Pote con cubos de melón aromático y dulce de temporada.",
+        ingredients: ["1 taza de melón calameño en cubos"],
+        bio: "Betacarotenos esenciales para la salud visual en edad escolar."
+      },
+      {
+        id: 30,
+        title: "Sandwichito de Pasta de Pollo y Ciboulette",
+        category: "proteinas",
+        cost: 500,
+        time: "4 min",
+        tag: "Aprovechamiento",
+        desc: "Pechuga de pollo cocida sobrante del almuerzo desmenuzada con quesillo en pan pita.",
+        ingredients: ["1/2 pan pita", "2 cdas de pollo desmenuzado", "1 cdta de quesillo molido"],
+        bio: "Estrategia de economía circular en la cocina familiar que evita el desperdicio."
+      }
+    ];
+
+    // 2. TRIVIA QUESTIONS DATA
+    const QUIZ_DATA = [
+      {
+        q: "¿Cuál de estas opciones entrega energía prolongada para la clase de ciencias sin sellos negros?",
+        options: [
+          { text: "Néctar en caja sabor durazno", correct: false, note: "El néctar en caja tiene hasta 4 cucharaditas de azúcar agregada." },
+          { text: "Brocheta de uvas y manzana con nueces", correct: true, note: "¡Correcto! Aporta fructosa natural, fibra y grasas buenas del valle." },
+          { text: "Paquete de galletas 'saludables' con 2 sellos", correct: false, note: "Aunque digan 'saludable', los sellos negros advierten calorías y grasas." },
+          { text: "Bebida gaseosa zero", correct: false, note: "No nutre las células de tu cuerpo ni entrega energía celular limpia." }
+        ]
+      },
+      {
+        q: "Si un alimento tiene el sello 'ALTO EN AZÚCARES', ¿qué significa biológicamente?",
+        options: [
+          { text: "Que tiene muchas vitaminas para crecer", correct: false, note: "Incorrecto. Los sellos solo advierten nutrientes críticos negativos." },
+          { text: "Que supera los límites máximos recomendados por el Ministerio de Salud", correct: true, note: "¡Excelente! Advierte exceso de azúcares simples que sobrecargan el páncreas." },
+          { text: "Que es un producto natural de la feria", correct: false, note: "Las frutas y verduras frescas de la feria no llevan sellos." },
+          { text: "Que ayuda a concentrarse mejor en clases", correct: false, note: "El exceso de azúcar causa un bajón rápido de energía a la media hora." }
+        ]
+      },
+      {
+        q: "¿Por qué el huevo duro es una excelente colación de menos de 5 minutos?",
+        options: [
+          { text: "Porque tiene proteína completa que da saciedad por horas", correct: true, note: "¡Exacto! La proteína del huevo evita que tengas hambre antes del almuerzo." },
+          { text: "Porque tiene mucho azúcar para correr rápido", correct: false, note: "El huevo no contiene azúcares simples." },
+          { text: "Porque es un producto ultraprocesado", correct: false, note: "Es un alimento natural $0$ sellos." },
+          { text: "Porque demora 1 hora en prepararse", correct: false, note: "Se cuece en 8 minutos la noche anterior y se pela en 30 segundos." }
+        ]
+      },
+      {
+        q: "¿Cuál es la mejor bebida para acompañar tu recreo en el IRFE?",
+        options: [
+          { text: "Jugo en polvo sabor naranja", correct: false, note: "Tiene colorantes y endulzantes artificiales." },
+          { text: "Bebida energética", correct: false, note: "Peligrosa para el corazón de niños y niñas." },
+          { text: "Agua fresca de la llave o botella reutilizable", correct: true, note: "¡Genial! El agua transporta los nutrientes a todo tu cuerpo sin calorías vacías." },
+          { text: "Bebida de fantasía con gas", correct: false, note: "Contiene ácidos y azúcares que dañan los dientes." }
+        ]
+      }
+    ];
+
+    // 3. APPLICATION STATE
+    let currentQuizIndex = 0;
+    let quizScore = 0;
+    let selectedRecipeForModal = null;
+    let monthlyPlan = JSON.parse(localStorage.getItem('nutri_plan_2026')) || {};
+
+    // 4. TAB NAVIGATION LOGIC
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-view').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('bg-white', 'text-brand-700', 'shadow-sm');
+        btn.classList.add('text-slate-600');
+      });
+
+      const activeView = document.getElementById(`view-${tabId}`);
+      if(activeView) activeView.classList.remove('hidden');
+
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if(activeBtn) {
+        activeBtn.classList.add('bg-white', 'text-brand-700', 'shadow-sm');
+        activeBtn.classList.remove('text-slate-600');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 5. RENDER RECIPES
+    function renderRecipes(list) {
+      const container = document.getElementById('recipes-grid');
+      container.innerHTML = '';
+
+      list.forEach(item => {
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-3xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between group";
+        card.innerHTML = `
+          <div class="space-y-3">
+            <div class="flex justify-between items-start gap-2">
+              <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-lg ${getTagColor(item.category)}">
+                ${item.tag}
+              </span>
+              <span class="text-xs font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">
+                $${item.cost} CLP
+              </span>
+            </div>
+            <h3 class="font-display font-extrabold text-base text-slate-900 group-hover:text-brand-600 transition">
+              ${item.title}
+            </h3>
+            <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+              ${item.desc}
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between gap-2">
+            <span class="text-xs text-slate-400 font-semibold">
+              <i class="fa-regular fa-clock mr-1 text-slate-400"></i> ${item.time}
+            </span>
+            <div class="flex items-center gap-1.5">
+              <button onclick="openModal(${item.id})" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3 py-1.5 rounded-xl transition">
+                Ver Detalles
+              </button>
+              <button onclick="quickAddToPlan(${item.id})" title="Añadir al primer día libre" class="text-xs bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold w-8 h-8 rounded-xl flex items-center justify-center transition">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function getTagColor(category) {
+      switch(category) {
+        case 'frutas': return 'bg-rose-100 text-rose-700';
+        case 'proteinas': return 'bg-blue-100 text-blue-700';
+        case 'economicas': return 'bg-emerald-100 text-emerald-700';
+        case 'valle': return 'bg-purple-100 text-purple-700';
+        default: return 'bg-slate-100 text-slate-700';
+      }
+    }
+
+    function filterRecipes(cat) {
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('active', 'bg-slate-900', 'text-white');
+        b.classList.add('bg-white', 'text-slate-600');
+      });
+      event.target.classList.add('active', 'bg-slate-900', 'text-white');
+      event.target.classList.remove('bg-white', 'text-slate-600');
+
+      if (cat === 'all') {
+        renderRecipes(RECIPES);
+      } else if (cat === 'economicas') {
+        renderRecipes(RECIPES.filter(r => r.cost <= 350));
+      } else {
+        renderRecipes(RECIPES.filter(r => r.category === cat));
+      }
+    }
+
+    // 6. MODAL RECIPE DETAILS & ASSIGNMENT
+    function openModal(recipeId) {
+      const recipe = RECIPES.find(r => r.id === recipeId);
+      if(!recipe) return;
+      selectedRecipeForModal = recipe;
+
+      document.getElementById('modal-tag').innerText = recipe.tag;
+      document.getElementById('modal-title').innerText = recipe.title;
+      document.getElementById('modal-desc').innerText = recipe.desc;
+      document.getElementById('modal-time').innerText = recipe.time;
+      document.getElementById('modal-cost').innerText = `$${recipe.cost} CLP`;
+      document.getElementById('modal-bio').innerText = recipe.bio;
+
+      const ingList = document.getElementById('modal-ingredients');
+      ingList.innerHTML = '';
+      recipe.ingredients.forEach(ing => {
+        const li = document.createElement('li');
+        li.innerText = ing;
+        ingList.appendChild(li);
+      });
+
+      // Populate day dropdown (Days 1 to 20)
+      const select = document.getElementById('modal-day-select');
+      select.innerHTML = '';
+      for(let d = 1; d <= 20; d++) {
+        const opt = document.createElement('option');
+        opt.value = d;
+        const currentAssigned = monthlyPlan[d] ? `(${monthlyPlan[d].title.substring(0, 15)}...)` : "(Libre)";
+        opt.innerText = `Día ${d} ${currentAssigned}`;
+        select.appendChild(opt);
+      }
+
+      document.getElementById('recipe-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('recipe-modal').classList.add('hidden');
+      selectedRecipeForModal = null;
+    }
+
+    function assignFromModal() {
+      if(!selectedRecipeForModal) return;
+      const day = document.getElementById('modal-day-select').value;
+      monthlyPlan[day] = selectedRecipeForModal;
+      savePlan();
+      closeModal();
+      renderCalendar();
+      updateKpis();
+      alert(`¡${selectedRecipeForModal.title} asignada con éxito al Día ${day}!`);
+    }
+
+    function quickAddToPlan(recipeId) {
+      const recipe = RECIPES.find(r => r.id === recipeId);
+      for(let d = 1; d <= 20; d++) {
+        if(!monthlyPlan[d]) {
+          monthlyPlan[d] = recipe;
+          savePlan();
+          renderCalendar();
+          updateKpis();
+          alert(`¡Asignada al primer día libre (Día ${d}): ${recipe.title}!`);
+          return;
+        }
+      }
+      alert("Todos los 20 días del mes ya están planificados. Haz clic en el calendario para modificar un día específico.");
+    }
+
+    // 7. CALENDAR & PLANNER LOGIC
+    function renderCalendar() {
+      const grid = document.getElementById('calendar-grid');
+      grid.innerHTML = '';
+
+      for(let d = 1; d <= 20; d++) {
+        const item = monthlyPlan[d];
+        const cell = document.createElement('div');
+        cell.className = `min-h-[110px] md:min-h-[130px] rounded-2xl p-2.5 md:p-3 border flex flex-col justify-between cursor-pointer transition ${
+          item ? 'bg-brand-50/50 border-brand-200 hover:border-brand-400' : 'bg-white border-dashed border-slate-300 hover:bg-slate-50'
+        }`;
+        cell.onclick = () => openDayPicker(d);
+
+        if(item) {
+          cell.innerHTML = `
+            <div>
+              <div class="flex justify-between items-center text-[10px] font-extrabold text-slate-400 mb-1">
+                <span class="w-5 h-5 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold text-[10px]">${d}</span>
+                <span class="text-emerald-700 font-bold">$${item.cost}</span>
+              </div>
+              <h4 class="font-bold text-slate-800 text-[11px] md:text-xs leading-snug line-clamp-2">${item.title}</h4>
+            </div>
+            <div class="flex items-center justify-between text-[9px] text-slate-400 pt-2 border-t border-brand-100">
+              <span><i class="fa-regular fa-clock"></i> ${item.time}</span>
+              <span class="text-brand-700 font-bold">${item.tag.substring(0, 10)}</span>
+            </div>
+          `;
+        } else {
+          cell.innerHTML = `
+            <div>
+              <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center font-bold text-[10px]">${d}</span>
+            </div>
+            <div class="text-center py-2 text-slate-400 text-xs">
+              <i class="fa-solid fa-plus-circle text-slate-300 block text-lg mb-1"></i>
+              <span class="text-[10px] font-semibold text-slate-400">Elegir</span>
+            </div>
+          `;
+        }
+        grid.appendChild(cell);
+      }
+    }
+
+    function openDayPicker(dayNumber) {
+      const current = monthlyPlan[dayNumber];
+      const recipePrompt = prompt(
+        `Día ${dayNumber}: Ingresa el número de receta (1 a 30) o escribe 'borrar':\n(Actualmente: ${current ? current.title : 'Vacío'})`
+      );
+
+      if(!recipePrompt) return;
+
+      if(recipePrompt.toLowerCase() === 'borrar') {
+        delete monthlyPlan[dayNumber];
+      } else {
+        const id = parseInt(recipePrompt);
+        const match = RECIPES.find(r => r.id === id);
+        if(match) {
+          monthlyPlan[dayNumber] = match;
+        } else {
+          alert("Número de receta no encontrado (debe ser del 1 al 30).");
+          return;
+        }
+      }
+
+      savePlan();
+      renderCalendar();
+      updateKpis();
+    }
+
+    function autoFillBalancedMonth() {
+      // Rotate healthy balance across 20 school days
+      const balancedOrder = [1, 2, 4, 3, 5, 6, 7, 9, 8, 14, 10, 12, 13, 11, 15, 16, 17, 22, 25, 30];
+      for(let d = 1; d <= 20; d++) {
+        const recId = balancedOrder[d - 1] || ((d % 30) + 1);
+        monthlyPlan[d] = RECIPES.find(r => r.id === recId);
+      }
+      savePlan();
+      renderCalendar();
+      updateKpis();
+      alert("¡Calendario del mes auto-completado con un balance óptimo de frutas, proteínas y cereales integrales!");
+    }
+
+    function clearMonth() {
+      if(confirm("¿Deseas reiniciar el planificador del mes?")) {
+        monthlyPlan = {};
+        savePlan();
+        renderCalendar();
+        updateKpis();
+      }
+    }
+
+    function savePlan() {
+      localStorage.setItem('nutri_plan_2026', JSON.stringify(monthlyPlan));
+    }
+
+    function updateKpis() {
+      const daysCount = Object.keys(monthlyPlan).length;
+      document.getElementById('kpi-planned-days').innerText = `${daysCount} / 20`;
+
+      if(daysCount > 0) {
+        let totalCost = 0;
+        Object.values(monthlyPlan).forEach(item => totalCost += (item.cost || 0));
+        const avg = Math.round(totalCost / daysCount);
+        document.getElementById('kpi-avg-cost').innerText = `$${avg} CLP`;
+      } else {
+        document.getElementById('kpi-avg-cost').innerText = `$0 CLP`;
+      }
+    }
+
+    // 8. TRIVIA GAME LOGIC
+    function loadQuizQuestion() {
+      const q = QUIZ_DATA[currentQuizIndex];
+      document.getElementById('quiz-progress').innerText = `Pregunta ${currentQuizIndex + 1} de ${QUIZ_DATA.length}`;
+      document.getElementById('quiz-score').innerText = `Puntos: ${quizScore}`;
+      document.getElementById('quiz-question').innerText = q.q;
+
+      const optsContainer = document.getElementById('quiz-options');
+      optsContainer.innerHTML = '';
+      const feedback = document.getElementById('quiz-feedback');
+      feedback.classList.add('hidden');
+      document.getElementById('quiz-next-btn').classList.add('hidden');
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "quiz-opt-btn p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50 text-left text-xs md:text-sm font-semibold text-slate-700 transition flex items-start gap-2.5";
+        btn.innerHTML = `<span class="w-5 h-5 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs shrink-0">${String.fromCharCode(65 + idx)}</span> <span>${opt.text}</span>`;
+        btn.onclick = () => selectQuizOption(opt, btn);
+        optsContainer.appendChild(btn);
+      });
+    }
+
+    function selectQuizOption(opt, clickedBtn) {
+      document.querySelectorAll('.quiz-opt-btn').forEach(b => b.disabled = true);
+      const feedback = document.getElementById('quiz-feedback');
+      feedback.classList.remove('hidden');
+
+      if(opt.correct) {
+        quizScore += 10;
+        clickedBtn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900');
+        feedback.className = "p-4 rounded-xl text-xs md:text-sm font-medium bg-emerald-50 text-emerald-800 border border-emerald-200";
+        feedback.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> ${opt.note}`;
+      } else {
+        clickedBtn.classList.add('bg-rose-100', 'border-rose-500', 'text-rose-900');
+        feedback.className = "p-4 rounded-xl text-xs md:text-sm font-medium bg-rose-50 text-rose-800 border border-rose-200";
+        feedback.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-600 mr-1.5"></i> ${opt.note}`;
+      }
+
+      document.getElementById('quiz-score').innerText = `Puntos: ${quizScore}`;
+      document.getElementById('quiz-next-btn').classList.remove('hidden');
+    }
+
+    function nextQuestion() {
+      currentQuizIndex++;
+      if(currentQuizIndex < QUIZ_DATA.length) {
+        loadQuizQuestion();
+      } else {
+        const container = document.getElementById('quiz-container');
+        container.innerHTML = `
+          <div class="text-center py-8 space-y-4">
+            <div class="w-16 h-16 bg-brand-100 text-brand-700 rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h3 class="font-display font-black text-2xl text-slate-900">¡Desafío Completado!</h3>
+            <p class="text-sm text-slate-600">Obtuviste <strong>${quizScore} de ${QUIZ_DATA.length * 10} puntos</strong>. ¡Estás listo para preparar colaciones saludables y sin sellos en familia!</p>
+            <button onclick="restartQuiz()" class="bg-brand-600 text-white font-bold text-xs uppercase px-6 py-3 rounded-xl hover:bg-brand-700 transition">
+              <i class="fa-solid fa-rotate-right mr-1"></i> Jugar de Nuevo
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    function restartQuiz() {
+      currentQuizIndex = 0;
+      quizScore = 0;
+      location.reload();
+    }
+
+    // INITIALIZATION ON LOAD
+    window.addEventListener('DOMContentLoaded', () => {
+      renderRecipes(RECIPES);
+      renderCalendar();
+      updateKpis();
+      loadQuizQuestion();
+
+      // If empty plan on first open, auto-fill for demonstration
+      if(Object.keys(monthlyPlan).length === 0) {
+        autoFillBalancedMonth();
+      }
+    });
+  </script>
+</body>
+</html>
